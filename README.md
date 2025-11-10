@@ -25,6 +25,7 @@ This architecture ensures transparency, traceability, and separation of responsi
 The goal of this project is to build a fully automated data pipeline that simulates a real analytics environment.
 
 The system includes:
+- Low-quality JSON files were generated via ChatGPT
 - Automated ingestion of semi-structured data from AWS S3  
 - Normalization and cleaning of inconsistent raw inputs  
 - Transformation pipeline powered by dbt  
