@@ -68,27 +68,6 @@ These tools simulate a real world cloud based analytics environment.
 
 ---
 
-## 📂 Repository Structure
-
-/
-├── airflow/ # Airflow environment and DAGs
-│ └── dags/
-│ └── extract_transform.py
-│
-├── airflowProjectPortfolioDBT/ # dbt project
-│ ├── models/
-│ │ ├── bronze_layer/ # Source definitions
-│ │ ├── silver_layer/ # Cleaned models
-│ │ └── gold_layer/ # Business views
-│ │
-│ ├── macros/ # Schema routing rules
-│ └── dbt_project.yml
-│
-└── README.md
-
-
----
-
 ## 🚀 Data Pipeline Flow
 
 ### 1. **Ingestion from AWS S3 into Bronze Layer**
