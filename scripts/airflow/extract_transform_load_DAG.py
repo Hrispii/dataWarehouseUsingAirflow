@@ -107,6 +107,35 @@ def load_to_postgres_from_s3():
     print("🎉 All files uploaded successfully to Yandex PostgreSQL!")
 
 
+#incremental load in bronze_layer
+def load_incremental_to_postgres_from_s3():
+    s3_hook = S3Hook(aws_conn_id=S3_CONN_ID)
+    pg_hook = PostgresHook(postgres_conn_id=PG_CONN_ID)
+
+    for file_path in FILES:
+        obj = s3_hook.get_key(file_path, bucket_name=BUCKET)
+        df = pd.read_json(io.BytesIO(obj.get()["Body"].read()))
+
+        table_name = file_path.split("/")[-1].replace(".json", "")
+        existing_df = pg_hook.get_pandas_df(f"SELECT * FROM silver_layer.{table_name};")
+
+        if not existing_df.empty:
+            new_data = df[~df["id"].isin(existing_df["id"])]
+        else:
+            new_data = df
+
+        if not new_data.empty:
+            pg_hook.insert_rows(
+                table=f"silver_layer.{table_name}",
+                rows=new_data.values.tolist(),
+                target_fields=new_data.columns.tolist()
+            )
+            print(f"✅ Inserted {len(new_data)} new rows into {table_name}")
+        else:
+            print(f"ℹ️ No new data for {table_name}")
+
+
+
 DEFAULT_ARGS = {
     'start_date':datetime.utcnow() - timedelta(minutes=2),
     'owner':'airflow',
@@ -134,3 +163,4 @@ with DAG(
 
 
     load_bronze >> run_dbt_models
+
