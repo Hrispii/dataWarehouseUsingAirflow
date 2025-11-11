@@ -1,4 +1,4 @@
-# ✅ Data Quality Tests for PostgreSQL
+# Data Quality Tests for PostgreSQL
 # These SQL queries validate consistency, completeness, structure,
 # referential integrity, duplication, and general data hygiene
 # across all layers of the warehouse.
