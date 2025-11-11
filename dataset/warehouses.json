@@ -1,0 +1,17 @@
+[
+  {
+    "warehouse_id": 1,
+    "name": "Central Warehouse",
+    "location": "Berlin"
+  },
+  {
+    "warehouse_id": 2,
+    "name": "Almaty Distribution Center",
+    "location": "Almaty"
+  },
+  {
+    "warehouse_id": 3,
+    "name": "Tokyo Hub",
+    "location": "Tokyo"
+  }
+]
