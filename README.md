@@ -31,7 +31,9 @@ The system includes:
 - Transformation pipeline powered by dbt  
 - Curated analytics layer for BI consumption  
 - A warehouse hosted on Yandex Cloud PostgreSQL  
-- A fully orchestrated workflow via Apache Airflow  
+- A fully orchestrated workflow via Apache Airflow
+
+![Project Schema](images/projectSchema.png) 
 
 The datasets used in this project represent a fictional e commerce workflow, including customers, orders, products, payments, inventory, shipments, reviews, and warehouses. Each dataset contains intentionally unclean raw fields to simulate realistic source behavior.
 
